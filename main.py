@@ -14,7 +14,7 @@ if __name__ == '__main__':
         gr.Markdown(
             "# <center> chat with Elysia\n"
             "### <center> base on chat gpt3.5 and vits\n"
-            "### <center> vits模型来源于up主“Saya睡大觉中”"
+            "### <center> 提供的vits模型来源于up主“Saya睡大觉中”，也可以自行替换模型"
         )
         #with gr.Tab("Text-to-Speech"):
         with gr.Row():
