@@ -1,2 +1,4 @@
 /model/G_953000.pth
 __pycache__
+/data/*
+config.json
