@@ -14,14 +14,12 @@ if __name__ == '__main__':
         gr.Markdown(
             "# <center> chat with Elysia\n"
             "### <center> base on chat gpt3.5 and vits\n"
-            "### <center> 提供的vits模型来源于up主“Saya睡大觉中”，也可以自行替换模型"
         )
-        #with gr.Tab("Text-to-Speech"):
         with gr.Row():
             with gr.Column():
                 textbox = gr.TextArea(label="对话内容",
                                         placeholder="Type your sentence here",
-                                        value="你好！", elem_id=f"tts-input")
+                                        value="你好?", elem_id=f"tts-input")
             with gr.Column():
                 text_output = gr.Textbox(label="回复信息")
                 audio_output = gr.Audio(label="音频信息", elem_id="tts-audio")
