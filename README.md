@@ -26,6 +26,8 @@ pip install <name>
 pip install <name> --proxy=127.0.0.1:port
 ```
 
+- 如果存在安装module后冲突错误等问题，请使用项目目录下的python3.9.6 installer安装3.9.6版本
+
 ### 正确启动项目之后
 
 - 在所有的依赖都正确安装完成之后，使用命令：
