@@ -39,10 +39,10 @@ def vits(text, language, speaker_id, noise_scale, noise_scale_w, length_scale, d
         x_tst = stn_tst.unsqueeze(0).to(device)
         x_tst_lengths = LongTensor([stn_tst.size(0)]).to(device)
         speaker_id = LongTensor([speaker_id]).to(device)
-        audio = net_g_ms.infer(x_tst, x_tst_lengths, sid=speaker_id, noise_scale=noise_scale, noise_scale_w=noise_scale_w,
-                            length_scale=length_scale)[0][0, 0].data.cpu().float().numpy()
         #audio = net_g_ms.infer(x_tst, x_tst_lengths, sid=speaker_id, noise_scale=noise_scale, noise_scale_w=noise_scale_w,
-        #                       length_scale=length_scale)[0][0, 0].data.float().detach().cpu().numpy()
+        #                    length_scale=length_scale)[0][0, 0].data.cpu().float().numpy()
+        audio = net_g_ms.infer(x_tst, x_tst_lengths, sid=speaker_id, noise_scale=noise_scale, noise_scale_w=noise_scale_w,
+                               length_scale=length_scale)[0][0, 0].data.float().detach().cpu().numpy()
 
     return audio
 
@@ -54,7 +54,7 @@ def generateSound(text, store_path):
     parser.add_argument("--colab", action="store_true", default=False, help="share gradio app")
     args = parser.parse_args()
     #device = torch.device(args.device)
-    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    device = "cuda" if torch.cuda.is_available() else "cpu"
 
     hps_ms = utils.get_hparams_from_file(r'./model/config.json')
     net_g_ms = SynthesizerTrn(
@@ -65,7 +65,7 @@ def generateSound(text, store_path):
         **hps_ms.model)
     _ = net_g_ms.eval().to(device)
     speakers = hps_ms.speakers
-    model, optimizer, learning_rate, epochs = utils.load_checkpoint(r'./model/G_953000.pth', net_g_ms, None)
+    model, optimizer, learning_rate, epochs = utils.load_checkpoint(r'./model/G_953000.pth', net_g_ms.to(device), None)
     ns = 0.6
     nsw = 0.668
     ls = 1.2
