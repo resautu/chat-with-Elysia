@@ -2,6 +2,7 @@ import gradio as gr
 import webbrowser
 import argparse
 from parse import Parse
+import torch
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--device', type=str, default='cpu')
@@ -10,6 +11,7 @@ if __name__ == '__main__':
     parser.add_argument("--colab", action="store_true", default=False, help="share gradio app")
     args = parser.parse_args()
     ps = Parse()
+    print(torch.__version__)
     with gr.Blocks() as app:
         gr.Markdown(
             "# <center> chat with Elysia\n"
